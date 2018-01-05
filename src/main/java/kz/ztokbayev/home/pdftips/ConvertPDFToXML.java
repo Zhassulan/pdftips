@@ -47,9 +47,22 @@ public class ConvertPDFToXML {
 			PRTokeniser tokenizer = new PRTokeniser(randomFile);
 			
 			StringBuffer strbufe = new StringBuffer();
+			
+			String splitter = ";";
+			String str = "";
 			while (tokenizer.nextToken()) {
+				if (tokenizer.getTokenType() == PRTokeniser.TokenType.START_ARRAY) {
+				}
+				if (tokenizer.getTokenType() == PRTokeniser.TokenType.END_ARRAY) {
+					str += splitter;
+					strbufe.append(str);
+					str = "";
+				}	
 				if (tokenizer.getTokenType() == PRTokeniser.TokenType.STRING) {
-					strbufe.append(tokenizer.getStringValue());
+					String s = tokenizer.getStringValue();
+					//strbufe.append(s);
+					//logger.info(s);
+					str += s;
 				}
 			}
 			String test = strbufe.toString();
