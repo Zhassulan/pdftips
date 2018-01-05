@@ -30,11 +30,11 @@ public class ParserFileService {
 				String outPath = FilenameUtils.getFullPath(f.getAbsolutePath());
 				String htmlFile = outPath + FilenameUtils.getBaseName(f.getName()) + ".html";
 				
-				ConvertPDFToXML.convertPdfToXML(f.getAbsolutePath());
+				//ConvertPDFToXML.convertPdfToXML(f.getAbsolutePath());
 				//converter.generateHTMLFromPDF(f.getAbsolutePath(), htmlFile);
 				
-				//HtmlParser hp = new HtmlParser();
-				//hp.parseHtml(htmlFile);
+				HtmlParser hp = new HtmlParser();
+				hp.parseHtml(htmlFile);
 				
 				//converter.extractImage(f.getAbsolutePath(), outPath);
 			}
