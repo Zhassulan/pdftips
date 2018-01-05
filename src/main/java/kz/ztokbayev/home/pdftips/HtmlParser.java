@@ -3,7 +3,9 @@ package kz.ztokbayev.home.pdftips;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.LogManager;
@@ -36,10 +38,13 @@ public class HtmlParser {
 						String csvFilePath = outPath + FilenameUtils.getBaseName(htmlFilePath) + ".csv";
 						FileWriter writer = new FileWriter(csvFilePath);
 						pText = content.getElementsByClass("p");
+						List <String> strList = new ArrayList <String> ();
 						for (Element txt : pText) {
 							//logger.info(txt.text());
-							CSVUtils.writeLine(writer, Arrays.asList(txt.text()));
+							strList.add(txt.text());
+							//CSVUtils.writeLine(writer, Arrays.asList(txt.text()));
 						}
+						CSVUtils.writeLine(writer, strList);
 						writer.flush();
 				        writer.close();
 					} catch (Exception e) {
